@@ -33,7 +33,52 @@ function App() {
     <>
       <div className="container">
         <h1>Post Form</h1>
-
+        <form>
+          <div className="mb-3">
+            <label className="form-label">Author</label>
+            <input
+              type="text"
+              className="form-control"
+              id="author"
+              name="author"
+              value={formPosts.author}
+              onChange={handleFormPosts}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Title</label>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              name="title"
+              value={formPosts.title}
+              onChange={handleFormPosts}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Body</label>
+            <textarea
+              className="form-control"
+              id="body"
+              name="body"
+              value={formPosts.body}
+              onChange={handleFormPosts}
+              rows="3"
+            ></textarea>
+          </div>
+          <div className="mb-3 form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="public"
+              checked={formPosts.public}
+              onChange={handleFormPosts}
+            />
+            <label >Public?</label>
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
       </div>
     </>
   )
