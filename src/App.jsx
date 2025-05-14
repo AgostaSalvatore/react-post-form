@@ -56,6 +56,7 @@ function App() {
               className="form-control"
               id="author"
               name="author"
+              placeholder="Author"
               value={formPosts.author}
               onChange={handleFormPost}
             />
@@ -67,6 +68,7 @@ function App() {
               className="form-control"
               id="title"
               name="title"
+              placeholder="Title"
               value={formPosts.title}
               onChange={handleFormPost}
             />
@@ -77,6 +79,7 @@ function App() {
               className="form-control"
               id="body"
               name="body"
+              placeholder="Body"
               value={formPosts.body}
               onChange={handleFormPost}
               rows="3"
