@@ -36,7 +36,7 @@ function App() {
       .then(resp => {
         console.log(resp.data)
 
-        setFormPosts(initialFormPost)
+        setFormPosts(initialFormPost) //reset di tutti i campi
       })
       .catch(error => console.log(error))
 
@@ -85,12 +85,13 @@ function App() {
           <div className="mb-3 form-check">
             <input
               type="checkbox"
+              className="form-check-input"
               id="public"
               name="public"
               checked={formPosts.public}
               onChange={handleFormPost}
             />
-            <label >Public?</label>
+            <label className="form-check-label" htmlFor="public">Public?</label>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
