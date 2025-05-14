@@ -1,5 +1,5 @@
 // Hook
-import { useState, useEffect } from "react"
+import { useState } from "react"
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css"
 //axios
@@ -18,13 +18,28 @@ function App() {
 
   const [formPosts, setFormPosts] = useState(initialFormPost)
 
-  function handleFormPosts(event) {
+  function handleFormPost(event) {
+
     const checkboxValue = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
 
     setFormPosts(formPost => ({
       ...formPost,
-      [event.target.post]: event.target.value
+      [event.target.name]: checkboxValue
     }))
+  }
+
+  function createPost(event) {
+
+    event.preventDefault()
+
+    axios.post(endpoint, formPosts)
+      .then(resp => {
+        console.log(resp.data)
+
+        setFormPosts(initialFormPost)
+      })
+      .catch(error => console.log(error))
+
 
   }
 
@@ -33,7 +48,7 @@ function App() {
     <>
       <div className="container">
         <h1>Post Form</h1>
-        <form>
+        <form onSubmit={createPost}>
           <div className="mb-3">
             <label className="form-label">Author</label>
             <input
@@ -42,7 +57,7 @@ function App() {
               id="author"
               name="author"
               value={formPosts.author}
-              onChange={handleFormPosts}
+              onChange={handleFormPost}
             />
           </div>
           <div className="mb-3">
@@ -53,7 +68,7 @@ function App() {
               id="title"
               name="title"
               value={formPosts.title}
-              onChange={handleFormPosts}
+              onChange={handleFormPost}
             />
           </div>
           <div className="mb-3">
@@ -63,17 +78,17 @@ function App() {
               id="body"
               name="body"
               value={formPosts.body}
-              onChange={handleFormPosts}
+              onChange={handleFormPost}
               rows="3"
             ></textarea>
           </div>
           <div className="mb-3 form-check">
             <input
               type="checkbox"
-              className="form-check-input"
               id="public"
+              name="public"
               checked={formPosts.public}
-              onChange={handleFormPosts}
+              onChange={handleFormPost}
             />
             <label >Public?</label>
           </div>
